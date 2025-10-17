@@ -1,0 +1,27 @@
+Below is the example of how we can achive cross-variable dependency in grafana
+Goal :- When we select a variable like namespace=uat then other variable like
+bucket should only show values that contain or match that selection. Even if they
+are not directly linked via the same CloudWatch dimension.
+
+Concept Overview
+- namespace = uat
+- bucket variable -> only show buckets that contain "uat" in their name
+
+Implementation Steps
+1. Variable (namespace)
+|- Name :- namespace
+|- Type :- Query
+|- Datasource :- CloudWatch
+|- Namespace :- ContainerInsights
+|- Metric Name :- PodCount (Any Relevent will work)
+|- Statistics :- Any will work
+|- Dimension :- Namespace
+
+2. Variable (bucket)
+(Variable is already configured)
+In variable Under Regex use expresion like
+/$namespace/ - (to show only values where the bucket name matchs the current namespace value)
+Optional Regex 
+a. /$namespace/ - any value which contains "uat"
+b. /^$namespace/ - values which starts with "uat"
+c. /$namespace$/ - values which ends with "uat"
