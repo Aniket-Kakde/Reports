@@ -1,0 +1,24 @@
+aws cloudwatch put-metric-data \
+  --namespace "MyAppNamespace" \
+  --metric-data '[
+    {
+      "MetricName": "AppHealth",
+      "Dimensions": [
+        {"Name": "K8sNamespace", "Value": "uat"},
+        {"Name": "S3Bucket", "Value": "uat-bucket-01"},
+        {"Name": "SQSQueue", "Value": "uat-queue-01"},
+        {"Name": "Pod", "Value": "pod-1"}
+      ],
+      "Value": 1
+    },
+    {
+      "MetricName": "AppHealth",
+      "Dimensions": [
+        {"Name": "K8sNamespace", "Value": "uat"},
+        {"Name": "S3Bucket", "Value": "uat-bucket-01"},
+        {"Name": "SQSQueue", "Value": "uat-queue-01"},
+        {"Name": "Pod", "Value": "pod-2"}
+      ],
+      "Value": 1
+    }
+  ]'
