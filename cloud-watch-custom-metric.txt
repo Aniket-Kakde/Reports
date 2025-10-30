@@ -1,24 +1,23 @@
-aws cloudwatch put-metric-data \
-  --namespace "MyAppNamespace" \
-  --metric-data '[
-    {
-      "MetricName": "AppHealth",
-      "Dimensions": [
-        {"Name": "K8sNamespace", "Value": "uat"},
-        {"Name": "S3Bucket", "Value": "uat-bucket-01"},
-        {"Name": "SQSQueue", "Value": "uat-queue-01"},
-        {"Name": "Pod", "Value": "pod-1"}
-      ],
-      "Value": 1
-    },
-    {
-      "MetricName": "AppHealth",
-      "Dimensions": [
-        {"Name": "K8sNamespace", "Value": "uat"},
-        {"Name": "S3Bucket", "Value": "uat-bucket-01"},
-        {"Name": "SQSQueue", "Value": "uat-queue-01"},
-        {"Name": "Pod", "Value": "pod-2"}
-      ],
-      "Value": 1
-    }
-  ]'
+# uat environment
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "S3Buckets" --value 1 --dimensions Environment=uat,ResourceName=gdb,ResourceType=s3
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "SQSQueues" --value 1 --dimensions Environment=uat,ResourceName=gdbqu,ResourceType=sqs
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "DynamoDBTables" --value 1 --dimensions Environment=uat,ResourceName=gdbdy,ResourceType=dynamodb
+
+# dc environment
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "S3Buckets" --value 1 --dimensions Environment=dc,ResourceName=gdj,ResourceType=s3
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "SQSQueues" --value 1 --dimensions Environment=dc,ResourceName=gdjqu,ResourceType=sqs
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "DynamoDBTables" --value 1 --dimensions Environment=dc,ResourceName=gdjdy,ResourceType=dynamodb
+
+# dr environment
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "S3Buckets" --value 1 --dimensions Environment=dr,ResourceName=gdt,ResourceType=s3
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "SQSQueues" --value 1 --dimensions Environment=dr,ResourceName=gdtqu,ResourceType=sqs
+aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "DynamoDBTables" --value 1 --dimensions Environment=dr,ResourceName=gdtdy,ResourceType=dynamodb
+
+
+
+Grafana Query Design
+
+Namespace: DemoResources
+Metric Name: S3Buckets
+Dimensions: Environment=$Environment
+
