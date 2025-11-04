@@ -1,3 +1,13 @@
+create custom metric for s3 bucket list names
+
+aws cloudwatch put-metric-data --namespace "Custom/S3" --metric-name "BucketExists" --dimensions BucketName=dc-sample-bucket-demo --value 1
+aws cloudwatch put-metric-data --namespace "Custom/S3" --metric-name "BucketExists" --dimensions BucketName=dr-sample-bucket-demo --value 1
+aws cloudwatch put-metric-data --namespace "Custom/S3" --metric-name "BucketExists" --dimensions BucketName=gdb-71dpep4ymskzy7z9-bucket --value 1
+aws cloudwatch put-metric-data --namespace "Custom/S3" --metric-name "BucketExists" --dimensions BucketName=gdj-igud89cx37vzyp6c-bucket --value 1
+aws cloudwatch put-metric-data --namespace "Custom/S3" --metric-name "BucketExists" --dimensions BucketName=gdt-bohvu1l5ygvxqbfq-bucket --value 1
+aws cloudwatch put-metric-data --namespace "Custom/S3" --metric-name "BucketExists" --dimensions BucketName=uat-sample-bucket --value 1
+
+
 # uat environment
 aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "S3Buckets" --value 1 --dimensions Environment=uat,ResourceName=gdb,ResourceType=s3
 aws cloudwatch put-metric-data --namespace "DemoResources" --metric-name "SQSQueues" --value 1 --dimensions Environment=uat,ResourceName=gdbqu,ResourceType=sqs
