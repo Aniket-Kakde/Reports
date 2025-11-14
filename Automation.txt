@@ -1,0 +1,27 @@
+from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
+import time
+
+# List of websites to open
+websites = [
+    "https://www.google.com",
+    "https://www.github.com",
+    "https://www.reddit.com",
+    "https://www.wikipedia.org",
+    "https://www.stackoverflow.com"
+]
+
+# Path to geckodriver (if not in PATH, provide full path)
+service = Service(executable_path="geckodriver")
+
+# Launch Firefox browser
+driver = webdriver.Firefox(service=service)
+
+# Open websites one by one in the same tab
+for site in websites:
+    print(f"Opening: {site}")
+    driver.get(site)
+    time.sleep(5)  # wait 5 seconds before opening the next site
+
+# Close the browser after visiting all
+driver.quit()
